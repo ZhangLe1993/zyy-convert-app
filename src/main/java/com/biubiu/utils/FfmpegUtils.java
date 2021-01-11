@@ -104,7 +104,7 @@ public class FfmpegUtils {
                     .append(":")
                     .append("h=")
                     .append(delogo.getHeight().toString())
-                    .append(":show=1")
+                    .append(":show=0")
             ;
             deLogos.add(sb.toString());
         }

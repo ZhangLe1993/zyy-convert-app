@@ -1,6 +1,9 @@
 package com.biubiu.utils;
 
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.*;
 import java.security.MessageDigest;
 import java.util.Base64;
@@ -9,6 +12,8 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
 public class FileUtil {
+
+    private static final Logger logger = LoggerFactory.getLogger(FileUtil.class);
 
     /**
      * 文件byte[]类型转File
@@ -282,6 +287,29 @@ public class FileUtil {
             return true;
         } catch (Exception e) {
             return false;
+        }
+    }
+
+    /**
+     * 递归删除文件夹下所有文件
+     * @param file
+     */
+    public static void deleteFile(File file) {
+        if (file.isDirectory()) {
+            //递归删除文件夹下所有文件
+            File[] files = file.listFiles();
+            for (File f : files) {
+                deleteFile(f);
+            }
+            //删除文件夹自己
+            if (file.listFiles().length == 0) {
+                logger.info("删除文件夹：[{}]", file);
+                file.delete();
+            }
+        } else {
+            // 如果是文件,就直接删除自己
+            logger.info("删除文件：[{}]", file);
+            file.delete();
         }
     }
 

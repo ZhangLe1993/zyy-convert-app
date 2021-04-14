@@ -1,5 +1,6 @@
 package com.biubiu;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpHeaders;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
@@ -8,6 +9,10 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupp
 
 @Configuration
 public class WebMvcConfig extends WebMvcConfigurationSupport {
+
+    @Value("${ffmpeg.video.folder}")
+    private String videoFolder;
+
 
     /**
      *  允许跨域访问
@@ -29,6 +34,7 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
         registry.addResourceHandler("*.html").addResourceLocations("classpath:/templates/dist/");
         registry.addResourceHandler("*.js").addResourceLocations("classpath:/templates/dist/");
         registry.addResourceHandler("*.css").addResourceLocations("classpath:/templates/dist/");
+        registry.addResourceHandler("/api/video/play/**").addResourceLocations("file:"+ videoFolder);
         super.addResourceHandlers(registry);
     }
 }

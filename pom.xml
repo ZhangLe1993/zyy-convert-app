@@ -71,6 +71,19 @@
             <version>1.8.9</version>
         </dependency>
 
+        <!-- javacv -->
+        <dependency>
+            <groupId>org.bytedeco</groupId>
+            <artifactId>javacv</artifactId>
+            <version>1.4.3</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.bytedeco</groupId>
+            <artifactId>javacv-platform</artifactId>
+            <version>1.4.3</version>
+        </dependency>
+
     </dependencies>
 
     <build>
